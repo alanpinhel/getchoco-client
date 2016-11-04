@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <link rel="stylesheet" type="text/css" href="css/materialize.min.css" media="screen, projection"/>
+  <link rel="icon" href="img/choco.png">
+  <title>GetChoco</title>
+</head>
+<body>
+  <main>
+    <div class="container">
+      <div class="col s10 center-align">
+        <img src="img/choco.png" alt="chocolate">
+        <h2>GetChoco</h2>
+      </div>
+      <div class="row">
+        <div class="col s10 offset-s1">
+          <p>Base</p>
+          <p class="range-field">
+            <input class="range" data-content="base" type="range" min="70" max="150" value="150"/>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s10 offset-s1">
+          <p>Braço</p>    
+          <p class="range-field">
+            <input class="range" data-content="braco" type="range" min="122" max="170" value="170"/>
+          </p>
+        </div>
+      </div> 
+      <div class="row">
+        <div class="col s10 offset-s1">
+          <p>Mão</p>    
+          <p class="range-field">
+            <input class="range" data-content="mao" type="range" min="70" max="90" value="90"/>
+          </p>
+        </div>           
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script>
+    $(".range").change(function() {
+      var motor = $(this).attr("data-content");
+      var angulo = $(this).val();
+      var config = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://192.168.0.100/?motor="+motor+"&angulo="+angulo,
+        "method": "GET"
+      };
+      $.ajax(config);
+    });
+  </script>
+</body>
+</html>
